@@ -7,17 +7,16 @@ const {
 const checkSameUser = require('../../hooks/check-same-user');
 const restrictToRole = require('../../hooks/restrict-to-role');
 const sequelizeInclude = require('../../hooks/sequelize-include');
-const loginUserActive = require('../../hooks/login-user-active');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt'), loginUserActive() ],
-    find: [ restrictToRole(["admin"]) ],
-    get: [ checkSameUser() ],
-    create: [ hashPassword('password'), restrictToRole(["admin"]) ],
-    update: [ hashPassword('password'), restrictToRole(["admin"]) ],
-    patch: [ hashPassword('password'), restrictToRole(["admin"]) ],
-    remove: [ restrictToRole(["admin"]) ]
+    all: [ ],
+    find: [ authenticate('jwt'), restrictToRole(["admin"]) ],
+    get: [ authenticate('jwt'), checkSameUser() ],
+    create: [ hashPassword('password') ],
+    update: [ authenticate('jwt'), hashPassword('password'), restrictToRole(["admin"]) ],
+    patch: [ authenticate('jwt'), hashPassword('password'), restrictToRole(["admin"]) ],
+    remove: [ authenticate('jwt'), restrictToRole(["admin"]) ]
   },
 
   after: {

@@ -7,7 +7,14 @@ import router from './router';
 import Vuetify from 'vuetify';
 import VueI18n from 'vue-i18n';
 import {i18n} from './plugins/localization/i18n';
+import ECharts from 'vue-echarts';
 
+// import ECharts modules manually to reduce bundle size
+import 'echarts/lib/chart/bar';
+import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/boxplot';
+import 'echarts/lib/chart/pie';
+import 'echarts/lib/component/tooltip';
 
 import App from './components/App.vue';
 
@@ -24,6 +31,8 @@ Vue.config.productionTip = false;
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(VueI18n);
+
+Vue.component('v-chart', ECharts);
 
 
 // TODO: Upgrade vue when fixed https://github.com/vuetifyjs/vuetify/issues/9999
@@ -46,11 +55,9 @@ Vue.use(Vuetify);
 
 
 let vuetify = new Vuetify({
-    lang: {
-        // t: (key, ...params) => i18n.t(key, params),
-        locales: { es },
-        current: 'es',
-    },
+    // lang: {
+    //     t: (key, ...params) => i18n.t(key, params),
+    // },
     icons: {
         iconfont: 'mdi',
     },
@@ -60,14 +67,14 @@ let vuetify = new Vuetify({
         },
         themes: {
             light: {
-                primary: "#1E85F1",
-                secondary: "#F5F6FA",
-                accent: "#e4e9f3"
+                primary: "#3c6ca5",
+                secondary: "#039BE5",
+                accent: "#F9C30D"
             },
             dark: {
-                primary: "#1E85F1",
-                secondary: "#39393e",
-                accent: "#494f71"
+                primary: "#3c6ca5",
+                secondary: "#039BE5",
+                accent: "#F9C30D"
             },
         },
     },

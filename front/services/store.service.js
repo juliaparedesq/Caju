@@ -9,23 +9,7 @@ import Vue from 'vue';
  * Note: you need to define in advance the keys of the store within this file
  */
 let store = Vue.observable({
-  user: null,
-  listStatus: {
-    page: 1,
-    itemsPerPage: 5,
-    sortBy: 'id',
-    sortDesc: false,
-    search: '',
-    filterByOrganizationId: -1,
-    filterByVUR: 900000,
-    filterByCostMaintenancesGreater: "",
-    sortByMaintenance: false,
-    filterByMaintenanceIndicator: null,
-    clase: undefined,
-    critic: undefined, 
-    agreement: undefined, 
-    active: "operational",
-  }
+  user: null
   // Add other shared values here
 });
 

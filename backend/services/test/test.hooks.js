@@ -1,13 +1,9 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-const filterByCostMaintenances = require('../../hooks/filter-by-cost-maintenances');
-const roleEquipment = require('../../hooks/role-equipment');
-const roleListEquipments = require('../../hooks/role-list-equipments');
-
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
-    find: [filterByCostMaintenances(), roleListEquipments()],
+    all: [],
+    find: [ authenticate('jwt') ],
     get: [],
     create: [],
     update: [],
@@ -18,7 +14,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [roleEquipment()],
+    get: [],
     create: [],
     update: [],
     patch: [],

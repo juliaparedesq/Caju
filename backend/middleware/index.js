@@ -17,14 +17,7 @@ module.exports = function (app) {
     }
 
     // Everything (except /api/*) is redirected to the webapp
-    if (!process.env.PROD) {
-        app.get(/^(?!\/api|\/users|\/oauth\/).*/, (req, res) => {
-            res.sendFile("index.html", {root: __dirname});
-        });
-    }
-    else {
-        app.get(/^(?!\/api|\/users|\/oauth\/).*/, (req, res) => {
-            res.sendFile("index.html", {root: "dist"});
-        });
-    }
+    app.get(/^(?!\/(api|oauth)\/).*/, (req, res) => {
+        res.sendFile("index.html", {root: __dirname});
+    });
 };

@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = ((column) => {
   return async context => {
-    let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    let months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'];
     if (column) {
       context.result.data = context.result.data.map((elem) => {
         let date = new Date(elem[column]);

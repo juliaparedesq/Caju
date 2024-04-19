@@ -5,7 +5,7 @@
         </v-flex>
         <v-flex xs12 class="text-center">
             <h1>Not Found</h1>
-            <span>Esta página está en desarrollo. <br>Inténtelo más tarde.</span>
+            <span>Esta página está en desarrollo. <br>Intentlo más tarde.</span>
         </v-flex>
     </v-layout>
 </template>

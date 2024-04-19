@@ -18,7 +18,6 @@ const channels = require('./channels');
 const authentication = require('./authentication');
 
 const sequelize = require('./sequelize');
-const updateVUR = require('./tasks/updateVUR');
 
 const app = express(feathers());
 
@@ -35,7 +34,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Host the public folder
 app.use(express.static('static'));
-app.use("/uploads", express.static(app.get("files").directory));
 
 // Set up Plugins and providers
 app.configure(express.rest());
@@ -50,9 +48,6 @@ app.configure(authentication);
 app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
-
-// Add scheduler task
-app.configure(updateVUR);
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());

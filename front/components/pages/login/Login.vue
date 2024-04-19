@@ -1,52 +1,35 @@
 <template>
-  <v-app id="inspire" class="full">
-    <v-main>
-      <v-container fluid class="d-flex justify-center align-center login">
-        <v-col xs="12" sm="8" md="6" lg="4" style="height: 100vh !important;">
-          <!--                    <v-row style="height: 10vh">-->
-          <!--                    </v-row>-->
-          <v-row style="height: 10vh"></v-row>
-          <v-row class="justify-center align-center d-flex logo">
-            <img src="/logo-create.png" alt="Icon" height="64" class="img-white">
-            <img src="/logo-ssmo.png" alt="Icon" height="96" class="img-white ml-4">
-          </v-row>
-          <v-row style="height: 10vh">
-          </v-row>
-          <v-row class="justify-center align-center d-flex logo">
-            <span style="font-weight: lighter; font-size: x-large">Gestión de Equipos Clínicos</span>
-          </v-row>
-          <v-row class="justify-center align-center d-flex logo">
-            <span style="font-weight: lighter; font-size: x-large">Iniciar sesión</span>
-          </v-row>
-          <v-row v-if="error" class="justify-center align-center d-flex error-message">
-            <v-flex sm6>
-              <p style="text-align: center" class="red--text mb-4">Puede que tu e-mail o contraseña sean incorrectos</p>
-            </v-flex>
-          </v-row>
-          <v-row  class="justify-center align-center d-flex">
-            <login-form
-                ref="form"
-                @login="doLogin"
-                @resetPassword="toRecoveryPasswordForm"
-                :loading="loading"
-            >
-            </login-form>
-          </v-row>
-          <v-row style="height: 5vh">
-          </v-row>
-          <v-row style="height: 10vh">
-          </v-row>
-        </v-col>
-        <v-col v-if="$vuetify.breakpoint.name !== 'xs'" xs="0" sm="4" md="6" lg="8" style="height: 100vh;">
-          <v-img
-              lazy-src="/login_bg.png"
-              class="img"
-              :max-height="windowSize.y"
-              max-width="100%"
-              src="/login_bg.png"
-          ></v-img>
-        </v-col>
+  <v-app id="inspire">
+    <v-main class="login">
+      <v-container fluid class="d-flex justify-center h-full">
+        <v-row align="center" justify="center">
+          <v-col xs="12" sm="8" md="6" lg="4">
+            <v-card class="elevation-12">
+              <v-toolbar color="primary">
+                <span class="white--text">Gestión Equipamiento Clínico</span>
+                <v-spacer/>
+                <v-toolbar-title class="login-title text--white">Login</v-toolbar-title>
+              </v-toolbar>
+              <v-card-text>
+                <div v-if="!isSignUp">
+                  <div v-show="isLogin" class="ma-3">
+                    <login-form ref="loginForm" @login="doLogin" @login-google="loginWithGoogle"
+                                @resetPassword="toRecoveryPasswordForm" :loading="loading"
+                                :error="error" @signup="isSignUp = true"/>
+                  </div>
+                  <div v-show="!isLogin" class="ma-3">
+                    <recover-password-form @sendReset="sendReset" @toLogin="toLoginForm" :loading="loading"/>
+                  </div>
+                </div>
+                <div v-else>
+                  <sign-up @sendReset="sendReset" @toLogin="toLoginForm" :loading="loading"/>
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
+      <global-toast/>
     </v-main>
   </v-app>
 </template>
@@ -114,7 +97,7 @@
           });
           this.loading = false;
           setStore("user", auth.user);
-          this.$router.push("/app/equipments");
+          this.$router.push("/app");
         } catch (e) {
           this.loading = false;
           this.error = true;
@@ -158,16 +141,15 @@
       toRecoveryPasswordForm() {
         this.isLogin = false;
       },
-    },
-    computed: {
-      windowSize() {
-        return {x: window.innerWidth, y: window.innerHeight};
-      }
     }
   }
 </script>
 
 <style scoped>
+
+  .login {
+    background: #d7e0e5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%23d2c6d4' fill-opacity='0.41'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
 
   .login-title {
     text-align: right;
@@ -175,10 +157,6 @@
 
   .logo {
     height: 100px;
-  }
-
-  .img {
-    height: 95vh;
   }
 
   .h-full {
