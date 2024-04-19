@@ -16,6 +16,9 @@
                     <login-form ref="loginForm" @login="doLogin" @login-google="loginWithGoogle"
                                 @resetPassword="toRecoveryPasswordForm" :loading="loading"
                                 :error="error" @signup="isSignUp = true"/>
+                                <sign-up ref="signUpForm" @login="doLogin" @login-google="loginWithGoogle"
+                    @resetPassword="toRecoveryPasswordForm" :loading="loading"
+                    :error="error" @signup="isSignUp = true"/>
                   </div>
                   <div v-show="!isLogin" class="ma-3">
                     <recover-password-form @sendReset="sendReset" @toLogin="toLoginForm" :loading="loading"/>
@@ -38,7 +41,7 @@
   import LoginForm from "./LoginForm.vue";
   import RecoverPasswordForm from "./RecoverPasswordForm.vue";
   import {setStore} from "../../../services/store.service";
-  import SignUp from "./SignUp";
+  import SignUp from "./SignUp.vue";
   import GlobalToast from "../../utils/GlobalToast";
 
   export default {

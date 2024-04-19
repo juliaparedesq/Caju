@@ -4,7 +4,8 @@ import Navigation from "./components/Navigation";
 import Login from "./components/pages/login/Login";
 import NotFound from "./components/pages/NotFound";
 import Users from "./components/pages/Users";
-
+import UsersManager from "./components/pages/UsersManager";
+import SignUpPage from "./components/pages/login/SignUpPage";
 
 const router = new VueRouter({
   mode: 'history',
@@ -13,6 +14,10 @@ const router = new VueRouter({
     {
       path: '/login',
       component: Login,
+    },
+    {
+      path: '/signup',
+      component: SignUpPage,
     },
     {
       path: '/app/',
@@ -24,6 +29,10 @@ const router = new VueRouter({
         {
           path: 'users',
           component: Users,
+        },
+        {
+          path: 'users2',
+          component: UsersManager,
         },
         {
           path: '*',
