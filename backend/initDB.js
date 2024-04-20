@@ -11,7 +11,12 @@ module.exports = async function (app) {
       name: "Admin",
       email: admin["email"],
       password: admin["password"],
-      role: "admin"
+      role: "admin",
+      lastname: "admin",
+      docID: "123",
+      phoneNumber: "123",
+      account: "123",
+      
     };
 
     /* Create super user*/

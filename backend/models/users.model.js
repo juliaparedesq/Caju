@@ -13,13 +13,25 @@ module.exports = function (app) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    profilePicture: {
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    docID: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    account: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -27,7 +39,7 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       defaultValue: "visitor",
       validate: {
-        isIn: [["admin", "manager", "visitor"]]
+        isIn: [["admin", "visitor"]]
       }
     },
     active: {
