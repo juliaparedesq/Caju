@@ -8,7 +8,7 @@
                 <v-toolbar color="primary">
                   <span class="white--text">Gestión Equipamiento Clínico</span>
                   <v-spacer/>
-                  <v-toolbar-title class="login-title text--white">Login</v-toolbar-title>
+                  <v-toolbar-title class="login-title text--white">Sign up</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
                   <div v-if="!isSignUp">

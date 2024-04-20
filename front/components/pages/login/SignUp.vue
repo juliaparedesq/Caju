@@ -2,8 +2,26 @@
   <v-form ref="resetPass" class="pa-4">
     <v-row>
       <v-col class="pa-0 pl-3 pr-3 mb-3">
-        <v-text-field append-icon="mdi-account-circle" label="Nombre"
+        <v-text-field append-icon="mdi-account-circle" label="Nombre(s)"
                       v-model="name" :rules="[validations.required()]"/>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="pa-0 pl-3 pr-3 mb-3">
+        <v-text-field append-icon="mdi-account-circle" label="Apellidos"
+                      v-model="lastname" :rules="[validations.required()]"/>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="pa-0 pl-3 pr-3 mb-3">
+        <v-text-field append-icon="mdi-account-circle" label="Documento de identidad"
+                      v-model="docID" :rules="[validations.required()]"/>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="pa-0 pl-3 pr-3 mb-3">
+        <v-text-field append-icon="mdi-account-circle" label="Número de teléfono"
+                      v-model="phoneNumber" :rules="[validations.required()]"/>
       </v-col>
     </v-row>
     <v-row>
